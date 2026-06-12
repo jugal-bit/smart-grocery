@@ -8,7 +8,7 @@ app = FastAPI(docs_url=None, redoc_url=None)
 
 # Configure Gemini with the key from Vercel
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 class GroceryItem(BaseModel):
     item: str
