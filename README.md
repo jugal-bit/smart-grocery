@@ -1,7 +1,6 @@
 # Petasight Smart Grocery List
 
-**Live URL:** [Insert your Vercel URL here after you deploy]
-
+**Live URL:** [(https://smart-grocery-weld.vercel.app/)]
 ### How to Run Locally
 1. **Frontend:** Open a terminal, run `npm install`, then run `npm run dev`.
 2. **Backend:** Open a second terminal, navigate to the root folder, and install dependencies with `pip install -r requirements.txt`.
