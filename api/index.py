@@ -31,6 +31,7 @@ async def classify_item(payload: GroceryItem):
 
     # Rule 3: LLM Aisle Classification using Gemini
 
+   # Rule 3: LLM Aisle Classification using Gemini
     try:
         system_prompt = "You are a grocery classifier. Categorize the given item into exactly one of these five aisles: produce, dairy, bakery, frozen, household. Return ONLY the single word of the aisle, nothing else in lowercase."
         
@@ -44,6 +45,6 @@ async def classify_item(payload: GroceryItem):
         return {"tag": aisle, "shade": None, "rule": 3}
         
     except Exception as e:
-        # This print statement will force the exact error to show up in Vercel Logs
-        print(f"CRITICAL GEMINI ERROR: {str(e)}") 
-        raise HTTPException(status_code=500, detail="LLM Classification failed")
+        # TRICK: Return the error as a 200 OK response so React prints it on the screen!
+        error_msg = str(e)[:25] # Cut it to 25 characters so it fits in the badge
+        return {"tag": f"API ERR: {error_msg}", "shade": None, "rule": 3}
