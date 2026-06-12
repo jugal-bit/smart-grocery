@@ -30,10 +30,10 @@ async def classify_item(payload: GroceryItem):
         return {"tag": "measured", "shade": shade, "rule": 1}
 
     # Rule 3: LLM Aisle Classification using Gemini
+
     try:
         system_prompt = "You are a grocery classifier. Categorize the given item into exactly one of these five aisles: produce, dairy, bakery, frozen, household. Return ONLY the single word of the aisle, nothing else in lowercase."
         
-        # Combine the strict system prompt with the user's item
         response = model.generate_content(f"{system_prompt}\n\nItem: {item}")
         aisle = response.text.strip().lower()
         
@@ -44,4 +44,6 @@ async def classify_item(payload: GroceryItem):
         return {"tag": aisle, "shade": None, "rule": 3}
         
     except Exception as e:
+        # This print statement will force the exact error to show up in Vercel Logs
+        print(f"CRITICAL GEMINI ERROR: {str(e)}") 
         raise HTTPException(status_code=500, detail="LLM Classification failed")
